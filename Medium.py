@@ -4,7 +4,7 @@ from Move import *
 import random
 import copy
 
-class MediumDificulty:
+class Medium:
     def __init__(self, board, play_reference):
         self.board = board
         self.play_reference = play_reference
@@ -17,7 +17,6 @@ class MediumDificulty:
             return self.giveBestMove()
 
     def randomMove(self):
-        #testa para todas jogadas...
         procurando = 'procurando'
         while procurando == 'procurando':
             randonPosition = random.randint(0, 8)
@@ -38,14 +37,14 @@ class MediumDificulty:
         bestValue = -10
         bestMove = None
         evals = []
-        #testa para todas jogadas...
+
         for i in range(0, len(self.board.board)):
             if(self.board.board[i] == 0):
                 move = Move(i, 1)
                 newBoard = Board(move)
                 newBoard.board = copy.copy(self.board.board) 
                 newBoard.board[i] = 1
-                value = self.minMax(newBoard, 10, False) #a IA já jogou, começa simulando do jogador (min)
+                value = self.minMax(newBoard, 10, False)
                 evals.append(value)
                 if(value > bestValue):
                     bestValue = value
@@ -61,22 +60,20 @@ class MediumDificulty:
         if board.isFull():
             return 0
         
-        if isMax: #maximizando... é a IA, marca O
+        if isMax: 
             score = -10
-            #testa possiveis jogadas do maximizador
+
             for i in range(0, len(board.board)):
                 if(board.board[i] == 0):
                     #vazio :) 
                     move = Move(i, 1)
                     newBoard = Board(move)
-                    newBoard.board = copy.copy(board.board) #em python, listas sao por referencia; tem que faezr uma copia
+                    newBoard.board = copy.copy(board.board) 
                     newBoard.board[i] = 1
-                    score = max(score, self.minMax(newBoard, depth+1, False)) #maior resultado (-1,0 ou 1)
+                    score = max(score, self.minMax(newBoard, depth+1, False)) 
             return score
         else:
             score = 10
-            #minimizando, pensando no jogador tentando ganhar
-            #escolhe a jogada que seria a melhor para o jogador (-1)
             for i in range(0, len(board.board)):
                 if(board.board[i]==0):
                     move = Move(i, -1)

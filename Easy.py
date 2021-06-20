@@ -4,13 +4,12 @@ from Move import *
 import random
 import copy
 
-class RandomMove:
+class Easy:
     def __init__(self, board):
         self.board = board
         self.childCount = 0
 
     def randomMove(self):
-        #testa para todas jogadas...
         procurando = 'procurando'
         
         count = 0

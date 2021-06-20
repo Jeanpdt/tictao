@@ -3,8 +3,8 @@ from Board import *
 
 import copy
 from MinMax import *
-from RandonMove import *
-from MediumDificulty import *
+from Easy import *
+from Medium import *
 from CheckGameOver import *
 
 class TTTGame:
@@ -16,12 +16,12 @@ class TTTGame:
         self.x_color = (255,0,0)
         self.o_color = (0,0,255)
         self.font_color = (0,0,255)
-        self._X = -1 #x é humano
+        self._X = -1 # humano
         self._DRAW = 0
-        self._O = 1 #o é a IA
+        self._O = 1 # ia
         self.playing = self._X
-        self._W = 3 #largura
-        self._H= 3 #altura
+        self._W = 3 # largura
+        self._H= 3 # altura
         self._PLAY_SUCCESS = 23
         self._PLAY_NOT_SUCCESS = 21
         self._font = pygame.font.Font( None, 24)   
@@ -31,7 +31,7 @@ class TTTGame:
         l = (pos[1]-100) // 100
         c = pos[0] // 100
         
-        lc=l*self._H + c #como a 'matriz' é guardada como array, tem que converter para posicao no vetor
+        lc=l*self._H + c 
         if(self.board.board[lc])!=0:
             return self._PLAY_NOT_SUCCESS
         
@@ -50,10 +50,10 @@ class TTTGame:
             self.play_reference = 1
 
         if (dificuldade == 'facil'):
-            board = RandomMove(self.board)
+            board = Easy(self.board)
             move = board.randomMove()
         elif (dificuldade == 'medio'):
-            board = MediumDificulty(self.board, self.play_reference)
+            board = Medium(self.board, self.play_reference)
             move = board.move()
             self.play_reference += 1
         else:

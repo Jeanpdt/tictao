@@ -20,7 +20,7 @@ class Node:
     def genSons(self):
         nextPlay = self.board.move.value*-1
         for i in range(0, len(self.board.board)):
-            if(self.board.board[i] == 0): # para cada possivel jogada...
+            if(self.board.board[i] == 0): 
                 move = Move(i, nextPlay)
                 newBoard = Board(move)
                 newBoard.board = copy.copy(self.board.board)

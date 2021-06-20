@@ -20,7 +20,7 @@ class MediumDificulty:
         #testa para todas jogadas...
         procurando = 'procurando'
         while procurando == 'procurando':
-            randonPosition = random.randint(0, 9)
+            randonPosition = random.randint(0, 8)
 
             if(self.board.board[randonPosition] == 0):
                 move = Move(randonPosition, 1)

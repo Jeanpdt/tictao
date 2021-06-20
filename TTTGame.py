@@ -44,9 +44,8 @@ class TTTGame:
     def iaPlay(self):
         dificuldades = ['facil', 'medio', 'dificil']
 
-        dificuldade = dificuldades[0]
+        dificuldade = dificuldades[2]
 
-        print(self.play_reference)
         if(self.play_reference == 4):
             self.play_reference = 1
 
@@ -61,12 +60,12 @@ class TTTGame:
             tree = MinMax(self.board)
             move = tree.giveBestMove()
 
-        checkGameOver = CheckGameOver(self.board.board)
-        checkGameOver.check()
-
         if (move):
             self.board.board[move.pos] = move.value
             self.playing = self.playing * -1
+
+        checkGameOver = CheckGameOver(self.board.board)
+        checkGameOver.check()
 
         count = 0
         for i in range(0,9): 

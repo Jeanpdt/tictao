@@ -26,7 +26,7 @@ class TTTGame:
         self._PLAY_NOT_SUCCESS = 21
         self._font = pygame.font.Font( None, 24)   
         self.play_reference = 1
-        
+
     def play(self, pos):
         l = (pos[1]-100) // 100
         c = pos[0] // 100
@@ -46,6 +46,7 @@ class TTTGame:
 
         dificuldade = dificuldades[0]
 
+        print(self.play_reference)
         if(self.play_reference == 4):
             self.play_reference = 1
 
@@ -63,8 +64,18 @@ class TTTGame:
         checkGameOver = CheckGameOver(self.board.board)
         checkGameOver.check()
 
-        self.board.board[move.pos] = move.value
-        self.playing = self.playing * -1
+        if (move):
+            self.board.board[move.pos] = move.value
+            self.playing = self.playing * -1
+
+        count = 0
+        for i in range(0,9): 
+            if self.board.board[i] != 0:
+                count += 1
+
+        if count == 9:
+            ctypes.windll.user32.MessageBoxW(0, "Empate!", "Resultado", 1)
+            sys.exit()
 
     def draw(self, canvas):
         if(self.playing == self._X):

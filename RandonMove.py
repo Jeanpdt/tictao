@@ -1,3 +1,4 @@
+from typing import Counter
 from Board import *
 from Move import *
 import random
@@ -11,8 +12,10 @@ class RandomMove:
     def randomMove(self):
         #testa para todas jogadas...
         procurando = 'procurando'
-        while procurando == 'procurando':
-            randonPosition = random.randint(0, 9)
+        
+        count = 0
+        while procurando == 'procurando' and count < 9:
+            randonPosition = random.randint(0, 8)
             
             if(self.board.board[randonPosition] == 0):
                 move = Move(randonPosition, 1)
@@ -24,5 +27,8 @@ class RandomMove:
 
                 return move
             else: 
+                count += 1
                 procurando = 'procurando'
+        
+        return False
 

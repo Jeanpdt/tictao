@@ -1,5 +1,6 @@
 import ctypes  
 import sys
+from typing import Counter
 
 class CheckGameOver:
     def __init__(self, board):
@@ -31,5 +32,5 @@ class CheckGameOver:
         ):
             ctypes.windll.user32.MessageBoxW(0, "Você perdeu!", "Resultado", 1)
             sys.exit()
-
+            
         return True
